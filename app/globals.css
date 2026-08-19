@@ -1,0 +1,1299 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+/* =========================
+   THEME
+========================= */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+}
+
+:root {
+  --background: transparent;
+  --foreground: #ffffff;
+}
+
+/* =========================
+   RESET
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  background: #000;
+}
+
+body {
+  color: #ffffff;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.profile-page {
+  position: relative;
+
+  isolation: isolate;
+
+  width: 100%;
+  min-height: 100svh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  padding: 20px;
+
+  background: #000;
+}
+
+/* =========================
+   BACKGROUND GIF
+========================= */
+
+.background-gif {
+  position: fixed;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: -3;
+
+  object-fit: cover;
+  object-position: center;
+
+  pointer-events: none;
+
+  user-select: none;
+}
+
+/* =========================
+   DARK OVERLAY
+========================= */
+
+.video-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: -2;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(0, 0, 0, 0.04) 0%,
+      rgba(0, 0, 0, 0.25) 55%,
+      rgba(0, 0, 0, 0.55) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.15) 45%,
+      rgba(0, 0, 0, 0.58) 100%
+    );
+
+  pointer-events: none;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.profile-card {
+  position: relative;
+
+  width: min(94vw, 560px);
+
+  max-height: 94svh;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+
+  border-radius: 26px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18, 18, 18, 0.78),
+      rgba(3, 3, 3, 0.64)
+    );
+
+  box-shadow:
+    0 40px 100px rgba(0, 0, 0, 0.6),
+    0 0 80px rgba(255, 255, 255, 0.025),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
+}
+
+/* glass light */
+
+.profile-card::before {
+  content: '';
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -1;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08),
+      transparent 25%,
+      transparent 75%,
+      rgba(255, 255, 255, 0.025)
+    );
+
+  pointer-events: none;
+}
+
+/* =========================
+   TOP BAR
+========================= */
+
+.profile-topbar {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 15px 21px;
+
+  flex-shrink: 0;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  color: rgba(255, 255, 255, 0.42);
+
+  font-family:
+    'Geist Mono',
+    monospace;
+
+  font-size: 8px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.16em;
+
+  text-transform: uppercase;
+}
+
+/* =========================
+   ONLINE
+========================= */
+
+.online-status {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.online-dot {
+  width: 6px;
+  height: 6px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 12px rgba(255, 255, 255, 0.4);
+
+  animation:
+    onlinePulse 2s ease-in-out infinite;
+}
+
+@keyframes onlinePulse {
+  0%,
+  100% {
+    opacity: 1;
+
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.55;
+
+    transform: scale(0.85);
+  }
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.profile-header {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  flex-shrink: 0;
+
+  padding:
+    25px
+    25px
+    20px;
+
+  text-align: center;
+}
+
+/* =========================
+   AVATAR
+========================= */
+
+.avatar-wrap {
+  position: relative;
+
+  width: 86px;
+  height: 86px;
+
+  overflow: visible;
+
+  border-radius: 20px;
+
+  background:
+    rgba(0, 0, 0, 0.35);
+
+  box-shadow:
+    0 0 30px rgba(255, 255, 255, 0.06),
+    0 15px 35px rgba(0, 0, 0, 0.45);
+}
+
+.avatar-wrap::before {
+  content: '';
+
+  position: absolute;
+
+  inset: -1px;
+
+  border-radius: 20px;
+
+  padding: 1px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.08)
+    );
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0)
+      content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite: xor;
+
+  mask-composite: exclude;
+
+  pointer-events: none;
+}
+
+.avatar-wrap img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 19px;
+
+  object-fit: cover;
+
+  user-select: none;
+}
+
+/* =========================
+   AVATAR STATUS
+========================= */
+
+.avatar-status {
+  position: absolute;
+
+  right: -2px;
+  bottom: -2px;
+
+  width: 13px;
+  height: 13px;
+
+  border:
+    3px solid
+    rgba(8, 8, 8, 0.95);
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 8px rgba(255, 255, 255, 0.8),
+    0 0 15px rgba(255, 255, 255, 0.35);
+}
+
+/* =========================
+   NAME
+========================= */
+
+.profile-header h1 {
+  margin:
+    18px
+    0
+    10px;
+
+  color: #ffffff;
+
+  font-size:
+    clamp(
+      2.15rem,
+      7vw,
+      3rem
+    );
+
+  font-weight: 900;
+
+  letter-spacing: 0.18em;
+
+  line-height: 1;
+
+  text-indent: 0.18em;
+
+  text-shadow:
+    0 2px 20px rgba(0, 0, 0, 0.8);
+}
+
+/* =========================
+   ROLE
+========================= */
+
+.profile-role {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.82
+    );
+
+  font-family:
+    'Geist Mono',
+    monospace;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.13em;
+
+  line-height: 1.5;
+
+  text-shadow:
+    0 1px 8px rgba(0, 0, 0, 0.8);
+}
+
+.role-separator {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.3
+    );
+
+  font-size: 7px;
+}
+
+/* =========================
+   LANGUAGE
+========================= */
+
+.language-row {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  margin-top: 11px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.5
+    );
+
+  font-family:
+    'Geist Mono',
+    monospace;
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.16em;
+
+  text-transform: uppercase;
+}
+
+.language-row i {
+  width: 3px;
+  height: 3px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.45
+    );
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.profile-content {
+  flex: 1;
+
+  min-height: 0;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  scrollbar-width: none;
+
+  overscroll-behavior: contain;
+}
+
+.profile-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.profile-section {
+  padding:
+    14px
+    23px
+    15px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.08);
+}
+
+.profile-section:last-child {
+  border-bottom: none;
+}
+
+/* =========================
+   SECTION HEADING
+========================= */
+
+.section-heading {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 11px;
+}
+
+.section-heading-left {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.section-heading h2 {
+  margin: 0;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.7
+    );
+
+  font-family:
+    'Geist Mono',
+    monospace;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.22em;
+
+  line-height: 1;
+
+  text-transform: uppercase;
+}
+
+.section-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.7
+    );
+}
+
+.section-icon svg {
+  display: block;
+}
+
+/* =========================
+   SECTION COUNT
+========================= */
+
+.section-count {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.3
+    );
+
+  font-family:
+    'Geist Mono',
+    monospace;
+
+  font-size: 8px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.1em;
+}
+
+/* =========================
+   TAG LIST
+========================= */
+
+.tag-list {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 6px;
+}
+
+/* =========================
+   TAG
+========================= */
+
+.tag {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 27px;
+
+  padding:
+    7px
+    10px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.17);
+
+  border-radius: 8px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.82
+    );
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.04
+    );
+
+  font-family:
+    'Geist Mono',
+    monospace;
+
+  font-size: 8px;
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  white-space: nowrap;
+
+  text-transform: lowercase;
+
+  text-shadow:
+    0 1px 5px rgba(0, 0, 0, 0.8);
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.tag:hover {
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.45
+    );
+
+  color: #ffffff;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.09
+    );
+
+  transform:
+    translateY(-1px);
+
+  box-shadow:
+    0 5px 15px
+    rgba(0, 0, 0, 0.18);
+}
+
+/* =========================
+   EXPAND BUTTON
+========================= */
+
+.expand-button {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  margin-top: 11px;
+
+  border: 0;
+
+  padding: 0;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.48
+    );
+
+  background: transparent;
+
+  font-family:
+    'Geist Mono',
+    monospace;
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.expand-button:hover {
+  color: #ffffff;
+}
+
+.expand-button:focus-visible {
+  outline:
+    1px solid rgba(255, 255, 255, 0.6);
+
+  outline-offset: 5px;
+
+  border-radius: 2px;
+}
+
+.expand-button svg {
+  transition:
+    transform 0.25s ease;
+}
+
+.rotate-180 {
+  transform:
+    rotate(180deg);
+}
+
+/* =========================
+   EXPANDED CONTENT
+========================= */
+
+.expand-content {
+  overflow: hidden;
+}
+
+.expanded-tags {
+  padding-top: 9px;
+}
+
+/* =========================
+   SOCIALS
+========================= */
+
+.socials {
+  display: flex;
+
+  gap: 8px;
+
+  flex-shrink: 0;
+
+  padding:
+    14px
+    20px;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.09);
+
+  background:
+    rgba(
+      0,
+      0,
+      0,
+      0.08
+    );
+}
+
+/* =========================
+   SOCIAL BUTTON
+========================= */
+
+.social-button {
+  position: relative;
+
+  display: flex;
+
+  flex: 1;
+
+  min-width: 0;
+  min-height: 43px;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  overflow: hidden;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.17);
+
+  border-radius: 10px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.68
+    );
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.035
+    );
+
+  text-decoration: none;
+
+  font-family:
+    'Geist Mono',
+    monospace;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.social-button::before {
+  content: '';
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      120deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.06),
+      transparent 80%
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity 0.2s ease;
+
+  pointer-events: none;
+}
+
+.social-button:hover {
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.45
+    );
+
+  color: #ffffff;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.085
+    );
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 8px 20px
+    rgba(0, 0, 0, 0.2);
+}
+
+.social-button:hover::before {
+  opacity: 1;
+}
+
+.social-button:active {
+  transform:
+    translateY(0)
+    scale(0.98);
+}
+
+.social-button:focus-visible {
+  outline:
+    1px solid rgba(255, 255, 255, 0.8);
+
+  outline-offset: 3px;
+}
+
+.social-button span {
+  position: relative;
+
+  z-index: 1;
+
+  font-family:
+    'Geist Mono',
+    monospace;
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
+
+  line-height: 1;
+}
+
+.social-button svg {
+  position: relative;
+
+  z-index: 1;
+
+  flex-shrink: 0;
+}
+
+/* =========================
+   BOTTOM
+========================= */
+
+.profile-bottom {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  flex-shrink: 0;
+
+  padding:
+    0
+    21px
+    13px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.22
+    );
+
+  font-family:
+    'Geist Mono',
+    monospace;
+
+  font-size: 7px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
+}
+
+/* =========================
+   LARGE SCREEN
+========================= */
+
+@media (min-width: 900px) {
+  .profile-card {
+    width: 560px;
+  }
+
+  .profile-page {
+    padding: 30px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 520px) {
+  html,
+  body {
+    overflow: hidden;
+  }
+
+  .profile-page {
+    width: 100%;
+
+    height: 100svh;
+    min-height: 100svh;
+
+    padding: 0;
+  }
+
+  .profile-card {
+    width: 100%;
+    height: 100svh;
+    max-height: 100svh;
+
+    border: 0;
+
+    border-radius: 0;
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(10, 10, 10, 0.82),
+        rgba(3, 3, 3, 0.68)
+      );
+
+    box-shadow: none;
+  }
+
+  .profile-card::before {
+    border-radius: 0;
+  }
+
+  .profile-topbar {
+    padding:
+      13px
+      18px;
+  }
+
+  .profile-header {
+    padding:
+      20px
+      18px
+      17px;
+  }
+
+  .avatar-wrap {
+    width: 74px;
+    height: 74px;
+
+    border-radius: 17px;
+  }
+
+  .avatar-wrap::before {
+    border-radius: 17px;
+  }
+
+  .avatar-wrap img {
+    border-radius: 16px;
+  }
+
+  .profile-header h1 {
+    margin-top: 15px;
+
+    margin-bottom: 9px;
+
+    font-size: 2.05rem;
+
+    letter-spacing: 0.16em;
+  }
+
+  .profile-role {
+    gap: 6px;
+
+    font-size: 8px;
+
+    letter-spacing: 0.11em;
+  }
+
+  .language-row {
+    margin-top: 9px;
+
+    font-size: 7px;
+  }
+
+  .profile-section {
+    padding:
+      12px
+      18px
+      13px;
+  }
+
+  .section-heading {
+    margin-bottom: 9px;
+  }
+
+  .tag-list {
+    gap: 5px;
+  }
+
+  .tag {
+    min-height: 25px;
+
+    padding:
+      6px
+      9px;
+
+    font-size: 7.5px;
+  }
+
+  .expand-button {
+    margin-top: 9px;
+
+    font-size: 7px;
+  }
+
+  .socials {
+    gap: 7px;
+
+    padding:
+      11px
+      14px;
+  }
+
+  .social-button {
+    min-height: 40px;
+  }
+
+  .social-button span {
+    font-size: 7px;
+  }
+
+  .profile-bottom {
+    padding:
+      0
+      18px
+      10px;
+
+    font-size: 6px;
+  }
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 380px) {
+  .profile-header {
+    padding-top: 16px;
+  }
+
+  .avatar-wrap {
+    width: 66px;
+    height: 66px;
+  }
+
+  .profile-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .profile-role {
+    font-size: 7px;
+  }
+
+  .profile-section {
+    padding:
+      10px
+      15px;
+  }
+
+  .tag {
+    padding:
+      6px
+      8px;
+
+    font-size: 7px;
+  }
+
+  .socials {
+    padding:
+      10px
+      12px;
+  }
+}
+
+/* =========================
+   HEIGHT FIX
+========================= */
+
+@media (max-height: 750px) and (min-width: 521px) {
+  .profile-card {
+    max-height: 96svh;
+  }
+
+  .profile-header {
+    padding-top: 18px;
+    padding-bottom: 15px;
+  }
+
+  .avatar-wrap {
+    width: 70px;
+    height: 70px;
+  }
+
+  .profile-header h1 {
+    margin-top: 14px;
+
+    font-size: 2rem;
+  }
+
+  .profile-section {
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+}
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+
+    transition-duration: 0.01ms !important;
+
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+  }
+}
